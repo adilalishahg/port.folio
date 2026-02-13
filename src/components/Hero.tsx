@@ -14,6 +14,34 @@ const stats = [
 ];
 
 export const Hero = () => {
+    const [roleText, setRoleText] = React.useState("");
+    const [isDeleting, setIsDeleting] = React.useState(false);
+    const [loopNum, setLoopNum] = React.useState(0);
+    const [typingSpeed, setTypingSpeed] = React.useState(150);
+
+    const fullRole = "MERN & Next.js Developer";
+
+    React.useEffect(() => {
+        const handleType = () => {
+            setRoleText(prev => isDeleting
+                ? fullRole.substring(0, prev.length - 1)
+                : fullRole.substring(0, prev.length + 1)
+            );
+
+            setTypingSpeed(isDeleting ? 100 : 150);
+
+            if (!isDeleting && roleText === fullRole) {
+                setTimeout(() => setIsDeleting(true), 2000);
+            } else if (isDeleting && roleText === "") {
+                setIsDeleting(false);
+                setLoopNum(prev => prev + 1);
+            }
+        };
+
+        const timer = setTimeout(handleType, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [roleText, isDeleting, typingSpeed]);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -54,36 +82,35 @@ export const Hero = () => {
                         <h2 className="text-accent-cyan font-mono text-sm tracking-widest uppercase">
                             Hello, I am
                         </h2>
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tight">
-                            Adil Ali
-                        </h1>
-                        <motion.h3
-                            variants={itemVariants}
-                            className="text-2xl md:text-4xl font-light text-foreground/60 italic"
-                        >
-                            {"MERN & Next.js Developer".split("").map((char, index) => (
+                        <h1 className="text-6xl md:text-9xl font-black tracking-tighter">
+                            {"Adil Ali".split("").map((char, index) => (
                                 <motion.span
                                     key={index}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{
-                                        duration: 0.05,
-                                        delay: 0.8 + index * 0.05,
+                                        duration: 0.1,
+                                        delay: 0.5 + index * 0.1,
                                     }}
                                 >
                                     {char}
                                 </motion.span>
                             ))}
-                            <motion.span
-                                animate={{ opacity: [0, 1, 0] }}
-                                transition={{
-                                    duration: 0.8,
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                }}
-                                className="inline-block w-[2px] h-[1em] bg-accent-cyan ml-1 align-middle"
-                            />
-                        </motion.h3>
+                        </h1>
+                        <div className="h-10 md:h-16 flex items-center justify-center">
+                            <span className="text-2xl md:text-4xl font-light text-foreground/60 italic">
+                                {roleText}
+                                <motion.span
+                                    animate={{ opacity: [0, 1, 0] }}
+                                    transition={{
+                                        duration: 0.8,
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                    }}
+                                    className="inline-block w-[3px] h-[1em] bg-accent-cyan ml-1 align-middle"
+                                />
+                            </span>
+                        </div>
                     </motion.div>
 
                     <motion.p

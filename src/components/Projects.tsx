@@ -12,7 +12,7 @@ const projects = [
         description: "Full-scale ICO project platform with automated crawling and real-time listing API.",
         tech: ["Next.js", "TanStack Query", "Zustand", "Axios", "Tailwind CSS", "Node.js"],
         details: "Built a comprehensive platform to list ICO projects using a custom crawler. Integrated real-time data fetching with TanStack Query and managed complex global state with Zustand. Developed a robust backend for scheduled crawling and data aggregation.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/VIZZ-WEB-SOLUTIONS/dailyblock",
         liveLink: "#"
     },
     {
@@ -21,7 +21,7 @@ const projects = [
         description: "Professional networking platform with secure authentication and real-time social features.",
         tech: ["Next.js", "Node.js", "SQL", "TanStack Query", "Zustand", "Axios", "Tailwind CSS"],
         details: "Developed a secure professional networking application. Implemented complex SQL relationships for user interactions. Built a performant frontend with Next.js and centralized state management.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/VIZZ-WEB-SOLUTIONS/networking_app",
         liveLink: "#"
     },
     {
@@ -30,7 +30,7 @@ const projects = [
         description: "Web3 stickers platform integrated with TON wallet and automated mining features.",
         tech: ["Next.js", "Ant Design", "TON Wallet", "Mining API", "Axios", "Tailwind CSS", "Zustand"],
         details: "Built a unique Web3 platform for digital stickers. integrated TON wallet for secure transactions. Developed automated mining logic and a sleek UI using Ant Design.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/vizzDev4/telegram-sticker",
         liveLink: "#"
     },
     {
@@ -39,7 +39,7 @@ const projects = [
         description: "Comprehensive administration dashboard featuring real-time monitoring and scalable state management.",
         tech: ["React", "Socket.io", "Redux", "Axios", "Tailwind CSS", "TypeScript"],
         details: "Built a high-performance admin portal for enterprise operations. Implemented real-time data streaming with Socket.io. Leveraged Redux for complex state orchestration across distributed modules.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/vizzDev4/bizz-ai-admin",
         liveLink: "#"
     },
     {
@@ -48,7 +48,7 @@ const projects = [
         description: "Modern real estate platform with seamless property listing and client management workflows.",
         tech: ["Next.js", "TypeScript", "TanStack Query", "Zustand", "Shadcn UI", "Tailwind CSS", "Framer Motion"],
         details: "Developed a premium property management SaaS. Integrated advanced search and filtering with TanStack Query. Created a fluid, accessible UI using Shadcn and Framer Motion animations.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/vizzdev/prospace_property_app_frontend.git",
         liveLink: "#"
     },
     {
@@ -75,7 +75,7 @@ const projects = [
         description: "AI-powered content and media automation platform featuring AI content generation and SaaS dashboard.",
         tech: ["Next.js", "Node.js", "MongoDB", "AI APIs"],
         details: "Built a comprehensive AI content generation engine. Integrated complex media automation workflows. Developed a high-performance SaaS dashboard with real-time analytics.",
-        githubLink: "https://github.com/adilalishahg",
+        githubLink: "https://github.com/vizzDev4/bizz-ai",
         liveLink: "#"
     },
     {
@@ -194,15 +194,15 @@ export const Projects = () => {
 
                                 <div className="flex gap-4 pt-4">
                                     <a
-                                        href={selectedProject.liveLink}
+                                        href={selectedProject.githubLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex-1 py-4 bg-accent-cyan text-black font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                                     >
-                                        <ExternalLink size={18} />
-                                        Live Demo
+                                        <Github size={18} />
+                                        Source Code
                                     </a>
-                                    <a
+                                    {/* <a
                                         href={selectedProject.githubLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -210,7 +210,7 @@ export const Projects = () => {
                                     >
                                         <Github size={18} />
                                         Source Code
-                                    </a>
+                                    </a> */}
                                 </div>
                             </div>
                         </motion.div>

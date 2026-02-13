@@ -77,45 +77,55 @@ export const Navbar = () => {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-[#020202] z-[55] md:hidden flex flex-col items-center justify-center p-6"
+                        initial={{ opacity: 0, x: "100%" }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: "100%" }}
+                        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                        className="fixed inset-0 bg-[#020202] z-[100] md:hidden flex flex-col justify-between p-12 overflow-y-auto"
                     >
-                        <div className="flex flex-col space-y-10 text-center">
+                        {/* Header inside overlay for visual continuity */}
+                        <div className="flex justify-between items-center w-full">
+                            <span className="text-xl font-bold tracking-tighter gradient-text">ADIL.</span>
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="p-2 text-white hover:text-accent-cyan transition-colors"
+                            >
+                                <X size={32} />
+                            </button>
+                        </div>
+
+                        <div className="flex flex-col space-y-8 items-start py-20">
                             {navLinks.map((link, idx) => (
                                 <motion.div
                                     key={link.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 + idx * 0.1 }}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
                                 >
                                     <Link
                                         href={link.href}
-                                        className="text-4xl font-black uppercase tracking-tighter text-foreground/90 hover:text-accent-cyan transition-colors"
+                                        className="text-5xl font-black uppercase tracking-tighter text-foreground/90 hover:text-accent-cyan transition-colors"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}
                                     </Link>
                                 </motion.div>
                             ))}
+                        </div>
 
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.6 }}
-                                className="flex items-center justify-center space-x-10 pt-10 border-t border-white/10"
-                            >
+                        <div className="border-t border-white/10 pt-10 flex flex-col gap-6">
+                            <div className="text-sm font-mono text-white/40 uppercase tracking-widest">Connect</div>
+                            <div className="flex items-center space-x-8">
                                 <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                    <Github size={32} />
+                                    <Github size={28} />
                                 </a>
                                 <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                    <Linkedin size={32} />
+                                    <Linkedin size={28} />
                                 </a>
                                 <a href="mailto:adilalishahg@gmail.com" className="hover:text-accent-cyan transition-colors">
-                                    <Mail size={32} />
+                                    <Mail size={28} />
                                 </a>
-                            </motion.div>
+                            </div>
                         </div>
                     </motion.div>
                 )}

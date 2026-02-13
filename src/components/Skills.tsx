@@ -14,7 +14,7 @@ const skillCategories = [
     },
     {
         title: "Integrations",
-        skills: ["Stripe", "Twilio", "QuickBooks", "Cloudinary"],
+        skills: ["AWS S3", "ChatGPT", "Gemini AI", "TON", "Stripe", "Twilio", "QuickBooks", "Cloudinary"],
     },
     {
         title: "Other",
