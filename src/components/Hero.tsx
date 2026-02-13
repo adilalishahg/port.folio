@@ -57,9 +57,33 @@ export const Hero = () => {
                         <h1 className="text-5xl md:text-8xl font-black tracking-tight">
                             Adil Ali
                         </h1>
-                        <h3 className="text-2xl md:text-4xl font-light text-foreground/60 italic">
-                            MERN & Next.js Developer
-                        </h3>
+                        <motion.h3
+                            variants={itemVariants}
+                            className="text-2xl md:text-4xl font-light text-foreground/60 italic"
+                        >
+                            {"MERN & Next.js Developer".split("").map((char, index) => (
+                                <motion.span
+                                    key={index}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{
+                                        duration: 0.05,
+                                        delay: 0.8 + index * 0.05,
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
+                            <motion.span
+                                animate={{ opacity: [0, 1, 0] }}
+                                transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                                className="inline-block w-[2px] h-[1em] bg-accent-cyan ml-1 align-middle"
+                            />
+                        </motion.h3>
                     </motion.div>
 
                     <motion.p

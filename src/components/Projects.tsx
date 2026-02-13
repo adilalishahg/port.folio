@@ -3,10 +3,74 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, X } from "lucide-react";
+import { ProjectMarquee } from "./ProjectMarquee";
 
 const projects = [
     {
         id: 1,
+        title: "Daily Block",
+        description: "Full-scale ICO project platform with automated crawling and real-time listing API.",
+        tech: ["Next.js", "TanStack Query", "Zustand", "Axios", "Tailwind CSS", "Node.js"],
+        details: "Built a comprehensive platform to list ICO projects using a custom crawler. Integrated real-time data fetching with TanStack Query and managed complex global state with Zustand. Developed a robust backend for scheduled crawling and data aggregation.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 2,
+        title: "Networking App",
+        description: "Professional networking platform with secure authentication and real-time social features.",
+        tech: ["Next.js", "Node.js", "SQL", "TanStack Query", "Zustand", "Axios", "Tailwind CSS"],
+        details: "Developed a secure professional networking application. Implemented complex SQL relationships for user interactions. Built a performant frontend with Next.js and centralized state management.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 3,
+        title: "StickerVerse",
+        description: "Web3 stickers platform integrated with TON wallet and automated mining features.",
+        tech: ["Next.js", "Ant Design", "TON Wallet", "Mining API", "Axios", "Tailwind CSS", "Zustand"],
+        details: "Built a unique Web3 platform for digital stickers. integrated TON wallet for secure transactions. Developed automated mining logic and a sleek UI using Ant Design.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 4,
+        title: "BiziAdmin",
+        description: "Comprehensive administration dashboard featuring real-time monitoring and scalable state management.",
+        tech: ["React", "Socket.io", "Redux", "Axios", "Tailwind CSS", "TypeScript"],
+        details: "Built a high-performance admin portal for enterprise operations. Implemented real-time data streaming with Socket.io. Leveraged Redux for complex state orchestration across distributed modules.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 5,
+        title: "Property Management",
+        description: "Modern real estate platform with seamless property listing and client management workflows.",
+        tech: ["Next.js", "TypeScript", "TanStack Query", "Zustand", "Shadcn UI", "Tailwind CSS", "Framer Motion"],
+        details: "Developed a premium property management SaaS. Integrated advanced search and filtering with TanStack Query. Created a fluid, accessible UI using Shadcn and Framer Motion animations.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 6,
+        title: "NEMT Platform",
+        description: "Non-Emergency Medical Transportation system with real-time dispatch and trip tracking.",
+        tech: ["Next.js", "Node.js", "Socket.io", "Zustand", "TanStack Query", "MUI", "Axios"],
+        details: "Built an end-to-end transportation management system. Implemented live vehicle tracking and automated dispatch algorithms. Leveraged MUI for a professional, responsive enterprise interface.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 7,
+        title: "MDS Boat SaaS",
+        description: "Enterprise-grade SaaS app for boat inventory management and sales analytics.",
+        tech: ["React", "Node.js", "MySQL", "Zustand", "TanStack Query", "Ant Design", "Axios", "Tailwind CSS"],
+        details: "Developed a robust boat dealership management suite. Integrated a performant MySQL backend for large-scale inventory tracking. Built complex reporting dashboards using Ant Design and custom charts.",
+        githubLink: "https://github.com/adilalishahg",
+        liveLink: "#"
+    },
+    {
+        id: 8,
         title: "BizAI",
         description: "AI-powered content and media automation platform featuring AI content generation and SaaS dashboard.",
         tech: ["Next.js", "Node.js", "MongoDB", "AI APIs"],
@@ -15,7 +79,7 @@ const projects = [
         liveLink: "#"
     },
     {
-        id: 2,
+        id: 9,
         title: "Noru",
         description: "An Uber-like platform with real-time tracking and comprehensive role management.",
         tech: ["MERN", "Socket.io", "Google Maps"],
@@ -24,7 +88,7 @@ const projects = [
         liveLink: "#"
     },
     {
-        id: 3,
+        id: 10,
         title: "Risk Management System",
         description: "Enterprise-grade dashboard for risk assessment with live data updates and reporting.",
         tech: ["React", "Node", "Charts.js"],
@@ -33,7 +97,7 @@ const projects = [
         liveLink: "#"
     },
     {
-        id: 4,
+        id: 11,
         title: "Sponsor Platform",
         description: "A platform connecting sponsors and creators with integrated payment processing.",
         tech: ["MERN", "Stripe", "Express"],
@@ -54,6 +118,8 @@ export const Projects = () => {
                     <h3 className="text-4xl md:text-5xl font-bold">Featured Projects</h3>
                     <div className="w-20 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full mx-auto" />
                 </div>
+
+                <ProjectMarquee />
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {projects.map((project, idx) => (

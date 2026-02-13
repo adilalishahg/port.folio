@@ -29,82 +29,97 @@ export const Navbar = () => {
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     return (
-        <nav
-            className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-                isScrolled ? "glass py-3" : "bg-transparent"
-            )}
-        >
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold tracking-tighter">
-                    <span className="gradient-text">ADIL.</span>
-                </Link>
+        <>
+            <nav
+                className={cn(
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
+                    isScrolled ? "bg-[#020202]/80 backdrop-blur-xl border-b border-white/5 py-3" : "bg-transparent"
+                )}
+            >
+                <div className="max-w-7xl mx-auto flex items-center justify-between">
+                    <Link href="/" className="text-xl font-bold tracking-tighter" onClick={() => setIsMobileMenuOpen(false)}>
+                        <span className="gradient-text">ADIL.</span>
+                    </Link>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-sm font-medium text-foreground/70 hover:text-accent-cyan transition-colors"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <div className="flex items-center space-x-4 ml-4 border-l border-white/10 pl-8">
-                        <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                            <Github size={20} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                            <Linkedin size={20} />
-                        </a>
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center space-x-8">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className="text-sm font-medium text-foreground/70 hover:text-accent-cyan transition-colors"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                        <div className="flex items-center space-x-4 ml-4 border-l border-white/10 pl-8">
+                            <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                                <Github size={20} />
+                            </a>
+                            <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                                <Linkedin size={20} />
+                            </a>
+                        </div>
                     </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden text-foreground hover:text-accent-cyan z-[60] p-2"
+                        onClick={toggleMobileMenu}
+                        aria-label="Toggle menu"
+                    >
+                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
                 </div>
+            </nav>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="md:hidden text-foreground hover:text-accent-cyan"
-                    onClick={toggleMobileMenu}
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation Overlay */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-full left-0 right-0 glass border-t border-white/10 px-6 py-8 md:hidden shadow-2xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-[#020202] z-[55] md:hidden flex flex-col items-center justify-center p-6"
                     >
-                        <div className="flex flex-col space-y-6 text-center">
-                            {navLinks.map((link) => (
-                                <Link
+                        <div className="flex flex-col space-y-10 text-center">
+                            {navLinks.map((link, idx) => (
+                                <motion.div
                                     key={link.name}
-                                    href={link.href}
-                                    className="text-lg font-medium text-foreground/80 hover:text-accent-cyan"
-                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 + idx * 0.1 }}
                                 >
-                                    {link.name}
-                                </Link>
+                                    <Link
+                                        href={link.href}
+                                        className="text-4xl font-black uppercase tracking-tighter text-foreground/90 hover:text-accent-cyan transition-colors"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </motion.div>
                             ))}
-                            <div className="flex items-center justify-center space-x-8 pt-4 border-t border-white/5">
-                                <a href="https://github.com" className="hover:text-accent-cyan transition-colors">
-                                    <Github size={24} />
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.6 }}
+                                className="flex items-center justify-center space-x-10 pt-10 border-t border-white/10"
+                            >
+                                <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                                    <Github size={32} />
                                 </a>
-                                <a href="https://linkedin.com" className="hover:text-accent-cyan transition-colors">
-                                    <Linkedin size={24} />
+                                <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                                    <Linkedin size={32} />
                                 </a>
                                 <a href="mailto:adilalishahg@gmail.com" className="hover:text-accent-cyan transition-colors">
-                                    <Mail size={24} />
+                                    <Mail size={32} />
                                 </a>
-                            </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </>
     );
 };
