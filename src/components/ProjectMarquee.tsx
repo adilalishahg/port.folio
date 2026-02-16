@@ -22,31 +22,35 @@ export const ProjectMarquee = () => {
     const duplicatedNames = [...projectNames, ...projectNames, ...projectNames];
 
     return (
-        <div className="relative w-full overflow-hidden bg-white/5 border-y border-white/10 py-6 mb-16 select-none">
+        <div className="relative w-full overflow-hidden bg-white/5 border-y border-white/5 py-4 md:py-8 mb-16 select-none group">
             <motion.div
-                className="flex whitespace-nowrap gap-12"
+                className="flex whitespace-nowrap gap-12 md:gap-24"
                 animate={{
-                    x: [0, -1035], // Approximate width of one full set of names
+                    x: ["0%", "-33.333%"],
                 }}
                 transition={{
-                    duration: 30,
+                    duration: 40,
                     repeat: Infinity,
                     ease: "linear",
                 }}
+                whileHover={{ animationPlayState: "paused" }}
+                style={{ animationPlayState: "running" }}
             >
                 {duplicatedNames.map((name, index) => (
-                    <div
+                    <motion.div
                         key={index}
-                        className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-foreground/20 hover:text-accent-cyan transition-colors cursor-default"
+                        whileHover={{ scale: 1.1, color: "var(--accent-cyan)" }}
+                        whileTap={{ scale: 0.9, color: "var(--accent-cyan)" }}
+                        className="text-xl md:text-5xl font-black uppercase tracking-tighter text-white/10 transition-colors cursor-pointer"
                     >
                         {name}
-                    </div>
+                    </motion.div>
                 ))}
             </motion.div>
 
             {/* Decorative gradient overlays for soft fade out at edges */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#020202] to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#020202] to-transparent z-10" />
+            <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#020202] to-transparent z-10 pointer-events-none" />
         </div>
     );
 };

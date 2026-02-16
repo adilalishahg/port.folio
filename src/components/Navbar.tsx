@@ -22,7 +22,7 @@ export const Navbar = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -30,48 +30,59 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav
+            <motion.header
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-                    isScrolled ? "bg-[#020202]/80 backdrop-blur-xl border-b border-white/5 py-3" : "bg-transparent"
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6",
+                    isScrolled ? "py-4" : "py-8"
                 )}
             >
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    <Link href="/" className="text-xl font-bold tracking-tighter" onClick={() => setIsMobileMenuOpen(false)}>
-                        <span className="gradient-text">ADIL.</span>
+                <div
+                    className={cn(
+                        "max-w-5xl mx-auto flex items-center justify-between transition-all duration-500 px-8 py-4 rounded-full border",
+                        isScrolled
+                            ? "bg-[#020202]/70 backdrop-blur-md border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                            : "bg-transparent border-transparent"
+                    )}
+                >
+                    <Link href="/" className="text-2xl font-black tracking-tighter group" onClick={() => setIsMobileMenuOpen(false)}>
+                        <span className="gradient-text group-hover:opacity-80 transition-opacity">ADIL.</span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center space-x-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-foreground/70 hover:text-accent-cyan transition-colors"
+                                className="px-4 py-2 text-[13px] font-bold uppercase tracking-widest text-foreground/50 hover:text-accent-cyan transition-all rounded-full hover:bg-white/5"
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <div className="flex items-center space-x-4 ml-4 border-l border-white/10 pl-8">
-                            <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                <Github size={20} />
+                        <div className="w-px h-4 bg-white/10 mx-4" />
+                        <div className="flex items-center space-x-3">
+                            <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="p-2 text-foreground/40 hover:text-accent-cyan transition-all hover:scale-110">
+                                <Github size={18} />
                             </a>
-                            <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                <Linkedin size={20} />
+                            <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="p-2 text-foreground/40 hover:text-accent-cyan transition-all hover:scale-110">
+                                <Linkedin size={18} />
                             </a>
                         </div>
                     </div>
 
                     {/* Mobile Menu Toggle */}
                     <button
-                        className="md:hidden text-foreground hover:text-accent-cyan z-[60] p-2"
+                        className="md:hidden text-foreground hover:text-accent-cyan transition-colors"
                         onClick={toggleMobileMenu}
                         aria-label="Toggle menu"
                     >
-                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
-            </nav>
+            </motion.header>
 
             {/* Mobile Navigation Overlay */}
             <AnimatePresence>
@@ -104,7 +115,7 @@ export const Navbar = () => {
                                 >
                                     <Link
                                         href={link.href}
-                                        className="text-5xl font-black uppercase tracking-tighter text-foreground/90 hover:text-accent-cyan transition-colors"
+                                        className="text-4xl xs:text-5xl font-black uppercase tracking-tighter text-foreground/90 hover:text-accent-cyan transition-colors"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}

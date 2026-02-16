@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send, Github, Linkedin, MessageSquare } from "lucide-react";
 
+import { Magnetic } from "./Magnetic";
+
 export const Contact = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
@@ -27,118 +29,123 @@ export const Contact = () => {
                 setTimeout(() => setStatus("idle"), 3000);
             } else {
                 setStatus("idle");
-                alert("Failed to send message. Please try again later.");
             }
         } catch (error) {
             console.error(error);
             setStatus("idle");
-            alert("An error occurred. Please try again later.");
         }
     };
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden">
-            <div className="blob -bottom-20 -right-20 opacity-10" />
+        <section id="contact" className="py-32 relative overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-cyan/5 blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid md:grid-cols-2 gap-16">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="grid md:grid-cols-2 gap-20">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="space-y-8"
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="space-y-12"
                     >
-                        <div className="space-y-4">
-                            <h2 className="text-accent-cyan font-mono text-sm tracking-widest uppercase">Get in Touch</h2>
-                            <h3 className="text-4xl md:text-5xl font-bold">Let&apos;s Build Something Extraordinary</h3>
-                            <p className="text-lg text-foreground/70 leading-relaxed max-w-md">
-                                Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+                        <div className="space-y-6">
+                            <motion.h2
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="text-accent-cyan font-mono text-xs md:text-sm tracking-[0.3em] uppercase opacity-80"
+                            >
+                                Get in Touch
+                            </motion.h2>
+                            <h3 className="text-5xl md:text-7xl font-black leading-tight">
+                                Let&apos;s Build <span className="gradient-text">Digital Futures</span>
+                            </h3>
+                            <p className="text-xl text-foreground/50 leading-relaxed font-light max-w-md">
+                                Have a vision? Let&apos;s transform it into high-performance reality.
                             </p>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-6 group">
-                                <div className="w-12 h-12 rounded-2xl glass-card flex items-center justify-center group-hover:glow-cyan transition-all">
-                                    <Mail className="text-accent-cyan" size={24} />
+                        <div className="space-y-8">
+                            <motion.a
+                                href="mailto:adilalishahg@gmail.com"
+                                whileHover={{ x: 10 }}
+                                className="flex items-center gap-6 group"
+                            >
+                                <div className="w-16 h-16 rounded-[2rem] glass-card flex items-center justify-center group-hover:border-accent-cyan/50 transition-all duration-300">
+                                    <Mail className="text-accent-cyan" size={28} />
                                 </div>
                                 <div className="space-y-1">
-                                    <div className="text-sm font-mono text-foreground/40 uppercase tracking-widest">Email</div>
-                                    <a href="mailto:adilalishahg@gmail.com" className="text-lg font-medium hover:text-accent-cyan transition-colors italic">
-                                        adilalishahg@gmail.com
-                                    </a>
+                                    <div className="text-[10px] font-mono font-bold text-foreground/30 uppercase tracking-[0.2em]">Primary Contact</div>
+                                    <div className="text-2xl font-black group-hover:text-accent-cyan transition-colors italic">ADILALISHAHG <span className="text-white/20">@GMAIL.COM</span></div>
                                 </div>
-                            </div>
+                            </motion.a>
 
-                            <div className="flex items-center gap-6 group">
-                                <div className="w-12 h-12 rounded-2xl glass-card flex items-center justify-center group-hover:glow-purple transition-all">
-                                    <MessageSquare className="text-accent-purple" size={24} />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-sm font-mono text-foreground/40 uppercase tracking-widest">Socials</div>
-                                    <div className="flex gap-4">
-                                        <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors"><Github size={20} /></a>
-                                        <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="hover:text-accent-purple transition-colors"><Linkedin size={20} /></a>
-                                    </div>
-                                </div>
+                            <div className="flex items-center gap-12 pt-4">
+                                <a href="https://github.com/adilalishahg" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-white transition-all hover:scale-125"><Github size={24} /></a>
+                                <a href="https://www.linkedin.com/in/syed-adilalishahg" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-white transition-all hover:scale-125"><Linkedin size={24} /></a>
                             </div>
                         </div>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="glass-card p-10 rounded-3xl"
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="glass-card p-12 rounded-[3.5rem] border border-white/5 shadow-2xl relative"
                     >
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-2">
-                                <label className="text-xs font-mono uppercase tracking-widest text-foreground/40 px-1">Full Name</label>
+                        <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground/30 px-2">Project Visionary</label>
                                 <input
                                     required
                                     type="text"
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    placeholder="John Doe"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-accent-cyan/50 focus:bg-white/10 transition-all"
+                                    className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-1 focus:ring-accent-cyan/30 focus:border-accent-cyan/20 focus:bg-white/10 transition-all text-white placeholder:text-white/10"
+                                    placeholder="Enter your name"
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-mono uppercase tracking-widest text-foreground/40 px-1">Email Address</label>
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground/30 px-2">Digital Address</label>
                                 <input
                                     required
                                     type="email"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    placeholder="john@example.com"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-accent-cyan/50 focus:bg-white/10 transition-all"
+                                    className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-1 focus:ring-accent-cyan/30 focus:border-accent-cyan/20 focus:bg-white/10 transition-all text-white placeholder:text-white/10"
+                                    placeholder="Enter your email"
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-mono uppercase tracking-widest text-foreground/40 px-1">Message</label>
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground/30 px-2">Mission Details</label>
                                 <textarea
                                     required
-                                    rows={5}
+                                    rows={4}
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                    placeholder="Your project vision..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-6 focus:outline-none focus:ring-2 focus:ring-accent-cyan/50 focus:bg-white/10 transition-all resize-none"
+                                    className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-1 focus:ring-accent-cyan/30 focus:border-accent-cyan/20 focus:bg-white/10 transition-all text-white placeholder:text-white/10 resize-none"
+                                    placeholder="Briefly describe your project..."
                                 />
                             </div>
 
-                            <button
-                                type="submit"
-                                disabled={status !== "idle"}
-                                className="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-accent-cyan hover:glow-cyan transition-all flex items-center justify-center gap-2 group"
-                            >
-                                {status === "idle" && (
-                                    <>
-                                        Send Message
-                                        <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                    </>
-                                )}
-                                {status === "sending" && "Processing..."}
-                                {status === "success" && "Sent Successfully!"}
-                            </button>
+                            <Magnetic>
+                                <button
+                                    type="submit"
+                                    disabled={status !== "idle"}
+                                    className="w-full py-6 bg-accent-cyan text-black font-black uppercase tracking-widest text-xs rounded-2xl hover:glow-cyan transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50"
+                                >
+                                    {status === "idle" && (
+                                        <>
+                                            Initiate Transmission
+                                            <Send size={16} />
+                                        </>
+                                    )}
+                                    {status === "sending" && "Processing..."}
+                                    {status === "success" && "Transmission Received"}
+                                </button>
+                            </Magnetic>
                         </form>
                     </motion.div>
                 </div>
